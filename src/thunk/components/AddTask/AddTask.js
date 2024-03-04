@@ -1,6 +1,6 @@
-import {useState} from "react";
-import {addTask} from "../actions/actions";
-import {useDispatch} from "react-redux";
+import { useState } from "react";
+import { addTask } from "../../actions/actions";
+import { useDispatch } from "react-redux";
 
 export const AddTask = () => {
     const [inputValue, setInputValue] = useState("");
@@ -8,22 +8,24 @@ export const AddTask = () => {
     const dispatch = useDispatch();
 
     const handleAddTask = () => {
-        dispatch(addTask(inputValue));
-        setInputValue("");
+        if (inputValue) {
+            dispatch(addTask(inputValue));
+            setInputValue("");
+        }
     };
 
-   return (
-       <div className="add-task">
-           <input
-               className="input"
-               placeholder="Добавить новую задачу"
-               value={inputValue}
-               onChange={(event) => setInputValue(event.target.value)}
-           />
-           <button className="btn-plus" onClick={handleAddTask}>
-               <span className="btn-text">Создать</span>
-               <img src="/assets/plus.svg" alt="btn-plus"/>
-           </button>
-       </div>
-   )
+    return (
+        <div className="add-task">
+            <input
+                className="input"
+                placeholder="Добавить новую задачу"
+                value={inputValue}
+                onChange={(event) => setInputValue(event.target.value)}
+            />
+            <button className="btn-plus" onClick={handleAddTask}>
+                <span className="btn-text">Создать</span>
+                <img src="/assets/plus.svg" alt="btn-plus"/>
+            </button>
+        </div>
+    )
 };

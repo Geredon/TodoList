@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
-import {Checkbox} from "antd";
-import {useDispatch, useSelector} from "react-redux";
-import {deleteTask, getAllTasks, updateTask} from "../actions/actions";
+import React, { useEffect } from 'react';
+import { Checkbox } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTask, getAllTasks, updateTask } from "../../actions/actions";
 
 export const TasksList = () => {
     const taskList = useSelector((state) => state.listTasks);
@@ -26,9 +26,10 @@ export const TasksList = () => {
     const handleDeleteTask = (taskId) => {
         dispatch(deleteTask(taskId));
     }
+
     return (
         <div className="list-tasks">
-            {taskList?.map((task) => {
+            {taskList && taskList?.map((task) => {
                 return (
                     <div key={task.id} className="tasks">
                         <div className="tasks-container">
@@ -40,7 +41,7 @@ export const TasksList = () => {
                             </div>
                             <span className={`task-text ${handleChecked(task.completed)}`}>
                                      {task.title}
-                                 </span>
+                            </span>
                         </div>
                         <div className="icon-delete" onClick={() => handleDeleteTask(task.id)}>
                             <img src="/assets/trash.svg" alt="trash"/>

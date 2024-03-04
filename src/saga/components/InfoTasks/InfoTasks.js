@@ -1,12 +1,12 @@
-import React, {useMemo} from 'react';
-import {useSelector} from "react-redux";
+import React, { useMemo } from 'react';
+import { useSelector } from "react-redux";
 
 export const InfoTasks = () => {
     const taskList = useSelector((state) => state.listTasks);
 
-    const taskCompleted = useMemo (() => {
+    const taskCompleted = useMemo(() => {
         return taskList.reduce((acc, item) => {
-            if( item?.completed) {
+            if (item?.completed) {
                 return ++acc;
             } else {
                 return acc
