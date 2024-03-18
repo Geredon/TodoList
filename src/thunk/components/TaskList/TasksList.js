@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
-import { Checkbox } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTask, getAllTasks, updateTask } from "../../actions/actions";
+import {updateTaskAction } from "../../actions/actions";
+import { deleteTaskThunk, getAllTasksThunk } from "../../redux/thunks";
 
 export const TasksList = () => {
     const taskList = useSelector((state) => state.listTasks);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllTasks);
+        dispatch(getAllTasksThunk);
     }, [])
 
     const handleCheckbox = (event, taskId) => {
         if (event.target.checked) {
-            dispatch(updateTask({taskId, completed: true}))
+            dispatch(updateTaskAction({taskId, completed: true}))
         } else {
-            dispatch(updateTask({taskId, completed: false}))
+            dispatch(updateTaskAction({taskId, completed: false}))
         }
     };
 
@@ -24,17 +24,19 @@ export const TasksList = () => {
     }
 
     const handleDeleteTask = (taskId) => {
-        dispatch(deleteTask(taskId));
+        dispatch(deleteTaskThunk(taskId));
     }
 
     return (
         <div className="list-tasks">
-            {taskList && taskList?.map((task) => {
+            {taskList.length && taskList?.map((task) => {
                 return (
                     <div key={task.id} className="tasks">
                         <div className="tasks-container">
                             <div className="checkbox-container">
-                                <Checkbox
+                                <input
+                                    type="checkbox"
+                                    className="checkbox"
                                     checked={task.completed}
                                     onChange={(event) => handleCheckbox(event, task.id)}
                                 />

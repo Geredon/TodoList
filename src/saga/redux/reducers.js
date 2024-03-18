@@ -1,4 +1,4 @@
-import { DELETE_TASK, PUT_TASK, PUT_TASKS, UPDATE_TASK } from "../actions/actionsTypes";
+import { DELETE_TASK, PUT_TASK, SET_TASKS, UPDATE_TASK } from "../actions/actionsTypes";
 
 const initialState = {
     listTasks: [],
@@ -6,7 +6,7 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case PUT_TASKS:
+        case SET_TASKS:
             return {...state, listTasks: action.payload};
         case PUT_TASK:
             return {...state, listTasks: [...state.listTasks, action.payload]};

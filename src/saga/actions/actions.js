@@ -1,11 +1,19 @@
-import {ADD_TASK, DELETE_TASK, GET_TASKS, PUT_TASK, PUT_TASKS, REMOVE_DATA, UPDATE_TASK} from "./actionsTypes";
+import {
+    ADD_TASK,
+    DELETE_TASK,
+    GET_TASKS,
+    PUT_TASK,
+    REMOVE_DATA,
+    SET_TASKS,
+    UPDATE_TASK
+} from "./actionsTypes";
 
-export const putData = (listTask) => ({
-    type: PUT_TASKS,
+export const setTasksAction = (listTask) => ({
+    type: SET_TASKS,
     payload: listTask,
 });
 
-export const getAllTasks =  () => ({
+export const getAllTasksAction =  () => ({
     type: GET_TASKS,
 });
 
@@ -14,22 +22,22 @@ export const removeData = (task) => ({
     payload: task,
 });
 
-export const deleteTask = (taskId) => ({
+export const deleteTaskAction = (taskId) => ({
     type: DELETE_TASK,
     payload: taskId,
 });
 
-export const putTask = (newTask) => ({
+export const putTaskAction = (newTask) => ({
     type: PUT_TASK,
     payload: newTask,
 });
 
-export const addTask = (taskId) => ({
+export const addTaskAction = (taskId) => ({
     type: ADD_TASK,
     payload: taskId,
 });
 
-export const updateTask = (task) => ({
+export const updateTaskAction = (task) => ({
     type: UPDATE_TASK,
     payload: task,
 });

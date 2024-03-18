@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addTask } from "../../actions/actions";
+import { addTaskAction } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 
 export const AddTask = () => {
@@ -9,7 +9,7 @@ export const AddTask = () => {
 
     const handleAddTask = () => {
         if (inputValue) {
-            dispatch(addTask(inputValue));
+            dispatch(addTaskAction(inputValue));
             setInputValue("");
         }
     };
