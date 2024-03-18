@@ -17,7 +17,7 @@ export const createTask = (title) => {
         .then((response) => response.json())
 };
 
-export const deleteData = (taskId) => {
+export const deleteTask = (taskId) => {
     return fetch(`https://jsonplaceholder.typicode.com/todos/${taskId}`, {
         method: "DELETE",
     });

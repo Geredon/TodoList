@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react';
-import { Checkbox } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTask, getAllTasks, updateTask } from "../../actions/actions";
+import { deleteTaskAction, getAllTasksAction, updateTaskAction } from "../../actions/actions";
 
 export const TasksList = () => {
     const taskList = useSelector((state) => state.listTasks);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllTasks());
+        dispatch(getAllTasksAction());
     }, [])
 
     const handleCheckbox = (event, taskId) => {
         if (event.target.checked) {
-            dispatch(updateTask({taskId, completed: true}))
+            dispatch(updateTaskAction({taskId, completed: true}))
         } else {
-            dispatch(updateTask({taskId, completed: false}))
+            dispatch(updateTaskAction({taskId, completed: false}))
         }
     };
 
@@ -24,7 +23,7 @@ export const TasksList = () => {
     }
 
     const handleDeleteTask = (taskId) => {
-        dispatch(deleteTask(taskId));
+        dispatch(deleteTaskAction(taskId));
     }
 
     return (
@@ -34,14 +33,16 @@ export const TasksList = () => {
                     <div key={task.id} className="tasks">
                         <div className="tasks-container">
                             <div className="checkbox-container">
-                                <Checkbox
+                                <input
+                                    type="checkbox"
+                                    className="checkbox"
                                     checked={task.completed}
                                     onChange={(event) => handleCheckbox(event, task.id)}
                                 />
                             </div>
                             <span className={`task-text ${handleChecked(task.completed)}`}>
                                      {task.title}
-                                 </span>
+                            </span>
                         </div>
                         <div className="icon-delete" onClick={() => handleDeleteTask(task.id)}>
                             <img src="/assets/trash.svg" alt="trash"/>

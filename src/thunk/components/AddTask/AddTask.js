@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { addTask } from "../../actions/actions";
 import { useDispatch } from "react-redux";
+import { createTaskThunk } from "../../redux/thunks";
 
 export const AddTask = () => {
     const [inputValue, setInputValue] = useState("");
@@ -9,7 +9,7 @@ export const AddTask = () => {
 
     const handleAddTask = () => {
         if (inputValue) {
-            dispatch(addTask(inputValue));
+            dispatch(createTaskThunk(inputValue));
             setInputValue("");
         }
     };
